@@ -58,7 +58,7 @@ router.get("/server/config", async (_req, res): Promise<void> => {
   const config = GetServerConfigResponse.parse({
     serverName: "Eaglercraft Server",
     websocketUrl: "wss://eaglercraft.com/mc/1.8.8/",
-    eaglercraftClientUrl: "https://eaglercraft.com/mc/1.8.8/",
+    eaglercraftClientUrl: "/client.html",
     githubUrl: "https://github.com/LAX1DUDE/eaglercraft",
     description:
       "Play Minecraft 1.8 directly in your browser — no downloads, no Java, no plugins required. Just click Play and start building.",

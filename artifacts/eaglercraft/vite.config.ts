@@ -66,6 +66,9 @@ export default defineConfig({
     fs: {
       strict: true,
     },
+    watch: {
+      ignored: ["**/public/client.html"],
+    },
   },
   preview: {
     port,

@@ -1,10 +1,12 @@
 import { Router, type IRouter } from "express";
 import healthRouter from "./health";
 import serverRouter from "./server";
+import proxyRouter from "./proxy";
 
 const router: IRouter = Router();
 
 router.use(healthRouter);
 router.use(serverRouter);
+router.use(proxyRouter);
 
 export default router;

@@ -7,7 +7,7 @@ export default function Play() {
     query: { queryKey: getGetServerConfigQueryKey() }
   });
 
-  const clientUrl = config?.eaglercraftClientUrl || "https://eaglercraft.com/mc/1.8.8/";
+  const clientUrl = config?.eaglercraftClientUrl || "/client.html";
 
   return (
     <div className="fixed inset-0 w-full h-full bg-black z-50 flex flex-col">
