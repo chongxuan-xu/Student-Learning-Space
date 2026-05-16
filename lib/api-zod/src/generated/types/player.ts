@@ -6,6 +6,10 @@
  * OpenAPI spec version: 0.1.0
  */
 
-export interface HealthStatus {
-  status: string;
+export interface Player {
+  username: string;
+  uuid: string;
+  joinedAt: string;
+  /** @nullable */
+  skinUrl: string | null;
 }

@@ -3,13 +3,15 @@ info:
   # Do not change the title, if the title changes, the import paths will be broken
   title: Api
   version: 0.1.0
-  description: API specification
+  description: Eaglercraft Server Portal API
 servers:
   - url: /api
     description: Base API path
 tags:
   - name: health
     description: Health operations
+  - name: server
+    description: Eaglercraft server operations
 paths:
   /healthz:
     get:
@@ -24,6 +26,51 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+
+  /server/status:
+    get:
+      operationId: getServerStatus
+      tags: [server]
+      summary: Get server status
+      description: Returns the current Eaglercraft server status including player count and MOTD
+      responses:
+        "200":
+          description: Server status
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ServerStatus"
+
+  /server/players:
+    get:
+      operationId: getServerPlayers
+      tags: [server]
+      summary: Get online players
+      description: Returns list of currently online players
+      responses:
+        "200":
+          description: List of online players
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Player"
+
+  /server/config:
+    get:
+      operationId: getServerConfig
+      tags: [server]
+      summary: Get server configuration
+      description: Returns the public server connection configuration
+      responses:
+        "200":
+          description: Server config
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ServerConfig"
+
 components:
   schemas:
     HealthStatus:
@@ -34,3 +81,62 @@ components:
       required:
         - status
 
+    ServerStatus:
+      type: object
+      properties:
+        online:
+          type: boolean
+        playerCount:
+          type: integer
+        maxPlayers:
+          type: integer
+        motd:
+          type: string
+        version:
+          type: string
+        uptimeSeconds:
+          type: integer
+      required:
+        - online
+        - playerCount
+        - maxPlayers
+        - motd
+        - version
+        - uptimeSeconds
+
+    Player:
+      type: object
+      properties:
+        username:
+          type: string
+        uuid:
+          type: string
+        joinedAt:
+          type: string
+        skinUrl:
+          type: ["string", "null"]
+      required:
+        - username
+        - uuid
+        - joinedAt
+        - skinUrl
+
+    ServerConfig:
+      type: object
+      properties:
+        serverName:
+          type: string
+        websocketUrl:
+          type: string
+        eaglercraftClientUrl:
+          type: string
+        githubUrl:
+          type: string
+        description:
+          type: string
+      required:
+        - serverName
+        - websocketUrl
+        - eaglercraftClientUrl
+        - githubUrl
+        - description

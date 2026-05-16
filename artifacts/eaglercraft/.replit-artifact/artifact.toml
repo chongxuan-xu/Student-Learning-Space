@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "Eaglercraft Server Portal"
+version = "1.0.0"
+id = "artifacts/eaglercraft"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 22586
+
+[services.development]
+run = "pnpm --filter @workspace/eaglercraft run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/eaglercraft", "run", "build" ]
+publicDir = "artifacts/eaglercraft/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "22586"
+BASE_PATH = "/"
