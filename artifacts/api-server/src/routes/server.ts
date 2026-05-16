@@ -42,7 +42,7 @@ router.get("/server/status", async (_req, res): Promise<void> => {
     online: true,
     playerCount: MOCK_PLAYERS.length,
     maxPlayers: 20,
-    motd: "Welcome to Eaglercraft! Play Minecraft 1.8 in your browser.",
+    motd: "Welcome to EaglercraftX! Play Minecraft 1.8.8 in your browser.",
     version: "1.8.8",
     uptimeSeconds,
   });
