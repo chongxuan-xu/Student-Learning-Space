@@ -1,6 +1,6 @@
 kind = "web"
 previewPath = "/"
-title = "Eaglercraft Server Portal"
+title = "Student Learning Space"
 version = "1.0.0"
 id = "artifacts/eaglercraft"
 router = "path"
