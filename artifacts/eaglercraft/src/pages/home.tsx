@@ -1,13 +1,21 @@
 import { useGetServerStatus, getGetServerStatusQueryKey, useGetServerConfig, getGetServerConfigQueryKey } from "@workspace/api-client-react";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import { formatUptime } from "../lib/format";
 import { Server, Users, Activity, Clock } from "lucide-react";
 
+const VERSIONS = [
+  { id: "1.5.2", label: "1.5.2", client: "/client_1.5.2.html" },
+  { id: "1.8.8", label: "1.8.8", client: "/client.html" },
+  { id: "1.12.2", label: "1.12.2", client: "/client_1.12.2.html" },
+];
+
 export default function Home() {
+  const [, navigate] = useLocation();
+
   const { data: status, isLoading: statusLoading } = useGetServerStatus({
     query: {
       queryKey: getGetServerStatusQueryKey(),
-      refetchInterval: 30000, // auto-refresh every 30s
+      refetchInterval: 30000,
     }
   });
 
@@ -16,6 +24,10 @@ export default function Home() {
       queryKey: getGetServerConfigQueryKey()
     }
   });
+
+  function handlePlay(version: typeof VERSIONS[number]) {
+    navigate(`/play?version=${version.id}`);
+  }
 
   return (
     <div className="space-y-16 animate-in fade-in zoom-in duration-500">
@@ -29,13 +41,19 @@ export default function Home() {
           {config?.description || "THE ULTIMATE BROWSER-BASED SURVIVAL EXPERIENCE."}
         </p>
 
-        <div className="pt-8">
-          <Link 
-            href="/play" 
-            className="inline-block pixel-border-primary bg-primary text-primary-foreground font-pixel text-2xl md:text-4xl px-12 py-6 hover:bg-white transition-all transform hover:scale-105 pixel-text-shadow !text-primary-foreground shadow-2xl"
-          >
-            START PLAYING
-          </Link>
+        <div className="pt-8 space-y-6">
+          <p className="font-pixel text-sm text-zinc-400 uppercase tracking-widest">SELECT VERSION</p>
+          <div className="flex flex-wrap justify-center gap-4">
+            {VERSIONS.map((v) => (
+              <button
+                key={v.id}
+                onClick={() => handlePlay(v)}
+                className="pixel-border-primary bg-primary text-primary-foreground font-pixel text-xl md:text-2xl px-10 py-5 hover:bg-white transition-all transform hover:scale-105 pixel-text-shadow !text-primary-foreground shadow-2xl cursor-pointer"
+              >
+                {v.label}
+              </button>
+            ))}
+          </div>
         </div>
       </section>
 

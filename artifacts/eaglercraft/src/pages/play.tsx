@@ -1,13 +1,16 @@
-import { useGetServerConfig, getGetServerConfigQueryKey } from "@workspace/api-client-react";
 import { Link } from "wouter";
 import { ArrowLeft } from "lucide-react";
 
-export default function Play() {
-  const { data: config } = useGetServerConfig({
-    query: { queryKey: getGetServerConfigQueryKey() }
-  });
+const VERSION_CLIENTS: Record<string, { label: string; client: string }> = {
+  "1.5.2": { label: "1.5.2", client: "/client_1.5.2.html" },
+  "1.8.8": { label: "1.8.8", client: "/client.html" },
+  "1.12.2": { label: "1.12.2", client: "/client_1.12.2.html" },
+};
 
-  const clientUrl = config?.eaglercraftClientUrl || "/client.html";
+export default function Play() {
+  const params = new URLSearchParams(window.location.search);
+  const versionId = params.get("version") || "1.8.8";
+  const version = VERSION_CLIENTS[versionId] || VERSION_CLIENTS["1.8.8"];
 
   return (
     <div className="fixed inset-0 w-full h-full bg-black z-50 flex flex-col">
@@ -17,14 +20,14 @@ export default function Play() {
           RETURN TO PORTAL
         </Link>
         <div className="font-pixel text-[10px] text-zinc-500">
-          EAGLERCRAFT CLIENT {config?.websocketUrl ? `- CONNECTING TO ${config.websocketUrl}` : ""}
+          EAGLERCRAFT {version.label}
         </div>
       </div>
       <div className="flex-1 w-full bg-black">
-        <iframe 
-          src={clientUrl}
+        <iframe
+          src={version.client}
           className="w-full h-full border-0"
-          title="Eaglercraft Client"
+          title={`Eaglercraft ${version.label}`}
           allow="fullscreen; autoplay; clipboard-write; encrypted-media; picture-in-picture"
         />
       </div>
