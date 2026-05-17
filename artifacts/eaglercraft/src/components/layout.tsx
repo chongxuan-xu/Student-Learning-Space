@@ -14,7 +14,7 @@ export function Layout({ children }: { children: ReactNode }) {
       <header className="pixel-border border-b bg-card py-4 px-6 sticky top-0 z-50">
         <div className="max-w-6xl mx-auto flex items-center justify-between">
           <Link href="/" className="font-pixel text-primary pixel-text-shadow text-xl hover:text-white transition-colors">
-            EAGLER.NET
+            STUDENT LEARNING SPACE
           </Link>
           
           <nav className="flex items-center gap-6 font-pixel text-xs">
