@@ -25,24 +25,19 @@ jobs:
       - name: Enable Corepack
         run: corepack enable
 
-      # INSTALL ROOT WORKSPACE (IMPORTANT)
-      - name: Install workspace dependencies
+      - name: Install dependencies
+        working-directory: artifacts/eaglercraft
         run: pnpm install --frozen-lockfile=false
 
-      # FORCE INSTALL FOR FRONTEND PACKAGE
-      - name: Install frontend deps
-        run: pnpm --filter "./artifacts/eaglercraft" install
-
-      # BUILD FRONTEND
       - name: Build frontend
-        run: pnpm --filter "./artifacts/eaglercraft" build
+        working-directory: artifacts/eaglercraft
+        run: pnpm build
 
-      # COPY DIST
-      - name: Prepare artifact
+      - name: Prepare Pages folder
         run: |
           rm -rf pages
-          mkdir pages
-          cp -r artifacts/eaglercraft/dist/* pages/
+          mkdir -p pages
+          cp -R artifacts/eaglercraft/dist/. pages/
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
