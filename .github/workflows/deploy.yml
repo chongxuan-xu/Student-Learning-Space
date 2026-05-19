@@ -12,9 +12,6 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: artifacts/eaglercraft
 
     steps:
       - name: Checkout
@@ -28,11 +25,16 @@ jobs:
       - name: Enable Corepack
         run: corepack enable
 
-      - name: Install dependencies
+      # INSTALL AT ROOT (IMPORTANT)
+      - name: Install dependencies (workspace root)
         run: pnpm install --frozen-lockfile=false
 
+      # BUILD ONLY FRONTEND PACKAGE
       - name: Build frontend
-        run: pnpm build
+        run: pnpm --filter "./artifacts/eaglercraft" install
+
+      - name: Build project
+        run: pnpm --filter "./artifacts/eaglercraft" build
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
