@@ -26,11 +26,12 @@ jobs:
         run: corepack enable
 
       - name: Install dependencies
+        working-directory: artifacts/eaglercraft
         run: pnpm install --frozen-lockfile=false
 
-      # IMPORTANT: build ONLY your frontend
-      - name: Build frontend only
-        run: pnpm --filter "./artifacts/**" build
+      - name: Build frontend
+        working-directory: artifacts/eaglercraft
+        run: pnpm build
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
