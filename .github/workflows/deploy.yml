@@ -12,6 +12,9 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: artifacts/eaglercraft
 
     steps:
       - name: Checkout
@@ -26,11 +29,9 @@ jobs:
         run: corepack enable
 
       - name: Install dependencies
-        working-directory: artifacts/eaglercraft
         run: pnpm install --frozen-lockfile=false
 
       - name: Build frontend
-        working-directory: artifacts/eaglercraft
         run: pnpm build
 
       - name: Upload Pages artifact
