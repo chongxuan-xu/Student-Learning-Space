@@ -35,14 +35,13 @@ jobs:
           PORT: 3000
           BASE_PATH: /Student-Learning-Space/
 
-      # 👇 DEBUG: List what's inside the dist folder
-      - name: Show dist structure
+      - name: Show dist structure (debug)
         run: ls -R ./artifacts/eaglercraft/dist
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./artifacts/eaglercraft/dist
+          path: ./artifacts/eaglercraft/dist/public   # <--- changed from dist to dist/public
 
   deploy:
     needs: build
