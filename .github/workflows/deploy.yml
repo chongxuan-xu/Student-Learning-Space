@@ -26,11 +26,11 @@ jobs:
       - name: Enable Corepack
         run: corepack enable
 
-      - name: Install and build frontend
-        run: |
-          cd artifacts/eaglercraft
-          pnpm install --frozen-lockfile=false
-          pnpm build
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile=false
+
+      - name: Build frontend
+        run: pnpm --filter eaglercraft build
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
