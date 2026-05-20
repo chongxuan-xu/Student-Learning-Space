@@ -2,8 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
 
 permissions:
   contents: write
@@ -26,30 +25,18 @@ jobs:
       - name: Enable Corepack
         run: corepack enable
 
-      # INSTALL ROOT WORKSPACE
-      - name: Install root dependencies
+      - name: Install workspace dependencies
         run: pnpm install --frozen-lockfile=false
 
-      # INSTALL FRONTEND PACKAGE DIRECTLY
-      - name: Install frontend dependencies
-        run: |
-          cd artifacts/eaglercraft
-          npm install
-
-      # BUILD FRONTEND
       - name: Build frontend
-        run: |
-          cd artifacts/eaglercraft
-          npx vite build --config vite.config.ts
+        run: pnpm --filter eaglercraft build
 
-      # PREPARE PAGES
       - name: Prepare Pages folder
         run: |
           rm -rf pages
-          mkdir pages
-          cp -r artifacts/eaglercraft/dist/. pages/
+          mkdir -p pages
+          cp -R artifacts/eaglercraft/dist/. pages/
 
-      # UPLOAD
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
@@ -58,7 +45,6 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
-
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
