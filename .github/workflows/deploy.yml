@@ -12,9 +12,6 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: artifacts/eaglercraft
 
     steps:
       - name: Checkout
@@ -32,13 +29,13 @@ jobs:
         run: pnpm install --frozen-lockfile=false
 
       - name: Build frontend
-        run: pnpm build
+        run: pnpm --filter "./artifacts/eaglercraft" exec vite build --config vite.config.ts
 
       - name: Prepare Pages folder
         run: |
-          rm -rf ../pages
-          mkdir -p ../pages
-          cp -R dist/. ../pages/
+          rm -rf pages
+          mkdir -p pages
+          cp -R artifacts/eaglercraft/dist/. pages/
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
