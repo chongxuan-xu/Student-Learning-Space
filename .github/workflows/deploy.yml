@@ -31,6 +31,8 @@ jobs:
 
       - name: Build frontend
         run: pnpm --filter eaglercraft build
+        env:
+          PORT: 3000
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
