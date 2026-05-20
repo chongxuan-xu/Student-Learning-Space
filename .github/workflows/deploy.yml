@@ -26,18 +26,30 @@ jobs:
       - name: Enable Corepack
         run: corepack enable
 
+      # INSTALL ROOT WORKSPACE
+      - name: Install root dependencies
+        run: pnpm install --frozen-lockfile=false
+
+      # INSTALL FRONTEND PACKAGE DIRECTLY
+      - name: Install frontend dependencies
+        run: |
+          cd artifacts/eaglercraft
+          npm install
+
+      # BUILD FRONTEND
       - name: Build frontend
         run: |
           cd artifacts/eaglercraft
-          pnpm install --frozen-lockfile=false
           npx vite build --config vite.config.ts
 
+      # PREPARE PAGES
       - name: Prepare Pages folder
         run: |
           rm -rf pages
           mkdir pages
           cp -r artifacts/eaglercraft/dist/. pages/
 
+      # UPLOAD
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
