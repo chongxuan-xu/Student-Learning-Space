@@ -34,10 +34,16 @@ jobs:
       - name: Build frontend
         run: pnpm build
 
+      - name: Prepare Pages folder
+        run: |
+          rm -rf ../pages
+          mkdir -p ../pages
+          cp -R dist/. ../pages/
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./artifacts/eaglercraft/dist
+          path: ./pages
 
   deploy:
     needs: build
