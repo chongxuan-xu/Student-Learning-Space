@@ -69,11 +69,9 @@ catalog:
 
 autoInstallPeers: false
 
-onlyBuiltDependencies:
-  - '@swc/core'
-  - esbuild
-  - msw
-  - unrs-resolver
+# pnpm v11+ requires using `allowBuilds` to approve package build scripts
+allowBuilds:
+  esbuild: true
 
 overrides:
   # replit uses linux-x64 only, we can exclude all other platforms
