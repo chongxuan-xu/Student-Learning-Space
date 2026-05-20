@@ -33,6 +33,7 @@ jobs:
         run: pnpm --filter eaglercraft build
         env:
           PORT: 3000
+          BASE_PATH: /Student-Learning-Space/
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
