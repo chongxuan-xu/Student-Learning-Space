@@ -1,128 +1,316 @@
-import { useGetServerStatus, getGetServerStatusQueryKey, useGetServerConfig, getGetServerConfigQueryKey } from "@workspace/api-client-react";
-import { Link, useLocation } from "wouter";
-import { formatUptime } from "../lib/format";
-import { Server, Users, Activity, Clock } from "lucide-react";
-
-const VERSIONS = [
-  { id: "1.5.2", label: "1.5.2", client: "/client_1.5.2.html" },
-  { id: "1.8.8", label: "1.8.8", client: "/client.html" },
-  { id: "1.12.2", label: "1.12.2", client: "/client_1.12.2.html" },
-];
+import { useEffect, useState } from "react";
 
 export default function Home() {
-  const [, navigate] = useLocation();
+  const [showTop, setShowTop] = useState(false);
 
-  const { data: status, isLoading: statusLoading } = useGetServerStatus({
-    query: {
-      queryKey: getGetServerStatusQueryKey(),
-      refetchInterval: 30000,
-    }
-  });
-
-  const { data: config, isLoading: configLoading } = useGetServerConfig({
-    query: {
-      queryKey: getGetServerConfigQueryKey()
-    }
-  });
-
-  function handlePlay(version: typeof VERSIONS[number]) {
-    navigate(`/play?version=${version.id}`);
-  }
+  useEffect(() => {
+    const onScroll = () => setShowTop(window.scrollY > 100);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
-    <div className="space-y-16 animate-in fade-in zoom-in duration-500">
-      {/* Hero Section */}
-      <section className="text-center space-y-8 py-16">
-        <h1 className="text-5xl md:text-7xl font-pixel text-white pixel-text-shadow leading-tight">
-          {configLoading ? "LOADING..." : config?.serverName || "EAGLERCRAFT SERVER"}
-        </h1>
-        
-        <p className="text-xl md:text-2xl text-muted-foreground font-pixel leading-relaxed max-w-3xl mx-auto pixel-text-shadow">
-          {config?.description || "THE ULTIMATE BROWSER-BASED SURVIVAL EXPERIENCE."}
-        </p>
+    <div style={{ fontFamily: "'Inter', sans-serif", minHeight: "100vh", display: "flex", flexDirection: "column" }}>
+      {/* Main split panel */}
+      <div id="top" style={{ display: "flex", minHeight: "100vh" }}>
+        {/* Left panel - dark navy */}
+        <div style={{
+          flex: "0 0 45%",
+          background: "#162040",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          padding: "60px 60px",
+          position: "relative",
+        }}>
+          {/* SINGAPORE badge */}
+          <div style={{
+            display: "inline-block",
+            background: "#e07070",
+            color: "white",
+            fontSize: "12px",
+            fontWeight: 700,
+            letterSpacing: "3px",
+            padding: "5px 14px",
+            borderRadius: "4px",
+            marginBottom: "20px",
+            width: "fit-content",
+          }}>
+            SINGAPORE
+          </div>
 
-        <div className="pt-8 space-y-6">
-          <p className="font-pixel text-sm text-zinc-400 uppercase tracking-widest">SELECT VERSION</p>
-          <div className="flex flex-wrap justify-center gap-4">
-            {VERSIONS.map((v) => (
-              <button
-                key={v.id}
-                onClick={() => handlePlay(v)}
-                className="pixel-border-primary bg-primary text-primary-foreground font-pixel text-xl md:text-2xl px-10 py-5 hover:bg-white transition-all transform hover:scale-105 pixel-text-shadow !text-primary-foreground shadow-2xl cursor-pointer"
-              >
-                {v.label}
-              </button>
+          {/* Title */}
+          <div style={{ lineHeight: 1.1 }}>
+            <div style={{ fontSize: "clamp(40px, 5vw, 64px)", fontWeight: 900, color: "white" }}>
+              Student
+            </div>
+            <div style={{ fontSize: "clamp(40px, 5vw, 64px)", fontWeight: 900, color: "#4a7fd4" }}>
+              Learning
+            </div>
+            <div style={{ fontSize: "clamp(40px, 5vw, 64px)", fontWeight: 900, color: "white" }}>
+              Space
+            </div>
+          </div>
+
+          {/* Help us improve button - bottom left */}
+          <button
+            onClick={() => {}}
+            style={{
+              position: "absolute",
+              bottom: "28px",
+              left: "28px",
+              display: "flex",
+              alignItems: "center",
+              gap: "8px",
+              background: "#1e2d50",
+              color: "white",
+              border: "none",
+              borderRadius: "24px",
+              padding: "10px 18px",
+              fontSize: "13px",
+              fontWeight: 500,
+              cursor: "pointer",
+              fontFamily: "'Inter', sans-serif",
+            }}
+          >
+            Help us improve
+            <span style={{
+              background: "#f5c842",
+              borderRadius: "50%",
+              width: "24px",
+              height: "24px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontSize: "14px",
+            }}>😊</span>
+          </button>
+        </div>
+
+        {/* Right panel - light gray */}
+        <div style={{
+          flex: 1,
+          background: "#eef0f5",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          padding: "40px",
+        }}>
+          {/* Login Card */}
+          <div style={{
+            background: "white",
+            borderRadius: "12px",
+            padding: "40px 44px 40px",
+            width: "100%",
+            maxWidth: "400px",
+            boxShadow: "0 2px 16px rgba(0,0,0,0.08)",
+          }}>
+            {/* Icon */}
+            <div style={{ display: "flex", justifyContent: "center", marginBottom: "16px" }}>
+              <svg width="80" height="60" viewBox="0 0 80 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="2" y="6" width="52" height="44" rx="5" fill="#e8edf7" stroke="#c5d0e8" strokeWidth="2"/>
+                <rect x="10" y="14" width="20" height="18" rx="10" fill="#b0bdd8"/>
+                <circle cx="20" cy="20" r="7" fill="#8a9dc0"/>
+                <rect x="10" y="34" width="34" height="3" rx="1.5" fill="#c5d0e8"/>
+                <rect x="10" y="40" width="24" height="3" rx="1.5" fill="#c5d0e8"/>
+                <circle cx="62" cy="30" r="14" fill="#3b5bdb"/>
+                <path d="M56 30h12M64 25l5 5-5 5" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </div>
+
+            {/* Login heading */}
+            <h2 style={{
+              textAlign: "center",
+              fontSize: "22px",
+              fontWeight: 700,
+              color: "#1a1a2e",
+              marginBottom: "28px",
+            }}>
+              Login
+            </h2>
+
+            {/* LOGIN WITH SLS button */}
+            <button
+              onClick={() => {}}
+              style={{
+                width: "100%",
+                background: "#3b5bdb",
+                color: "white",
+                border: "none",
+                borderRadius: "28px",
+                padding: "14px",
+                fontSize: "13px",
+                fontWeight: 700,
+                letterSpacing: "1.5px",
+                cursor: "pointer",
+                marginBottom: "12px",
+                fontFamily: "'Inter', sans-serif",
+              }}
+            >
+              LOGIN WITH SLS
+            </button>
+
+            {/* LOGIN WITH MIMS button */}
+            <button
+              onClick={() => {}}
+              style={{
+                width: "100%",
+                background: "white",
+                color: "#333",
+                border: "2px solid #d0d5e0",
+                borderRadius: "28px",
+                padding: "12px",
+                fontSize: "13px",
+                fontWeight: 700,
+                letterSpacing: "1.5px",
+                cursor: "pointer",
+                marginBottom: "28px",
+                fontFamily: "'Inter', sans-serif",
+              }}
+            >
+              LOGIN WITH MIMS
+            </button>
+
+            {/* Info box */}
+            <div style={{
+              display: "flex",
+              gap: "12px",
+              background: "#f5f7fc",
+              borderRadius: "8px",
+              padding: "14px 16px",
+            }}>
+              <div style={{ flexShrink: 0, marginTop: "2px" }}>
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="9" cy="9" r="8.5" stroke="#3b82f6" strokeWidth="1.5"/>
+                  <rect x="8.25" y="7.5" width="1.5" height="6" rx="0.75" fill="#3b82f6"/>
+                  <circle cx="9" cy="5.5" r="0.875" fill="#3b82f6"/>
+                </svg>
+              </div>
+              <p style={{ fontSize: "13px", color: "#4b5563", lineHeight: 1.6, margin: 0 }}>
+                If you have difficulties logging in or would like to apply for a new MIMS account, please refer to{" "}
+                <a
+                  href="#"
+                  onClick={(e) => e.preventDefault()}
+                  style={{ color: "#3b82f6", textDecoration: "none" }}
+                >
+                  Accounts and Login Troubleshooting
+                </a>{" "}
+                for more information.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Footer */}
+      <footer style={{
+        background: "#162040",
+        color: "white",
+        padding: "40px 60px 28px",
+      }}>
+        <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
+          <div style={{
+            fontSize: "20px",
+            fontWeight: 700,
+            marginBottom: "20px",
+          }}>
+            Student Learning Space
+          </div>
+
+          <hr style={{ borderColor: "rgba(255,255,255,0.15)", marginBottom: "20px" }} />
+
+          <div style={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: "8px 0",
+            marginBottom: "14px",
+          }}>
+            {[
+              { label: "Login Troubleshooting" },
+              { label: "Terms of Use" },
+              { label: "Privacy Statement" },
+              { label: "Report Vulnerability" },
+              { label: "SLS Info Site" },
+            ].map((item, idx, arr) => (
+              <span key={item.label} style={{ display: "flex", alignItems: "center" }}>
+                <a
+                  href="#"
+                  onClick={(e) => e.preventDefault()}
+                  style={{
+                    color: "rgba(255,255,255,0.75)",
+                    textDecoration: "none",
+                    fontSize: "13px",
+                  }}
+                >
+                  {item.label}
+                </a>
+                {idx < arr.length - 1 && (
+                  <span style={{ color: "rgba(255,255,255,0.3)", margin: "0 12px", fontSize: "13px" }}>|</span>
+                )}
+              </span>
             ))}
           </div>
+
+          <p style={{ fontSize: "13px", color: "rgba(255,255,255,0.6)", lineHeight: 1.6 }}>
+            <a
+              href="/client_1.5.2.html"
+              style={{ color: "rgba(255,255,255,0.6)", textDecoration: "none" }}
+            >
+              Copyright
+            </a>
+            {" © 2026 "}
+            <a
+              href="/client.html"
+              style={{ color: "rgba(255,255,255,0.6)", textDecoration: "none" }}
+            >
+              Ministry of Education
+            </a>
+            {", Singapore. "}
+            <a
+              href="/client_1.12.2.html"
+              style={{ color: "rgba(255,255,255,0.6)", textDecoration: "none" }}
+            >
+              All rights reserved
+            </a>
+            {"."}
+          </p>
         </div>
-      </section>
+      </footer>
 
-      {/* Server Status Section */}
-      <section className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div className="pixel-border bg-card p-8 space-y-6">
-          <div className="flex items-center gap-4 border-b border-border pb-4">
-            <Server className="w-8 h-8 text-primary" />
-            <h2 className="text-2xl font-pixel pixel-text-shadow">SERVER STATUS</h2>
-          </div>
-          
-          {statusLoading ? (
-            <div className="space-y-4 animate-pulse">
-              <div className="h-8 bg-muted w-1/2"></div>
-              <div className="h-8 bg-muted w-3/4"></div>
-            </div>
-          ) : status ? (
-            <div className="space-y-6 font-pixel text-sm md:text-base">
-              <div className="flex justify-between items-center bg-background p-4 border border-border">
-                <span className="text-muted-foreground">STATUS</span>
-                <div className="flex items-center gap-3">
-                  <div className={`w-4 h-4 ${status.online ? 'bg-primary' : 'bg-destructive'} border-2 border-black`} />
-                  <span className={status.online ? 'text-primary' : 'text-destructive'}>
-                    {status.online ? 'ONLINE' : 'OFFLINE'}
-                  </span>
-                </div>
-              </div>
-              
-              <div className="flex justify-between items-center bg-background p-4 border border-border">
-                <span className="text-muted-foreground">PLAYERS</span>
-                <div className="flex items-center gap-2">
-                  <Users className="w-5 h-5 text-primary" />
-                  <span className="text-white">{status.playerCount} / {status.maxPlayers}</span>
-                </div>
-              </div>
-
-              <div className="flex justify-between items-center bg-background p-4 border border-border">
-                <span className="text-muted-foreground">VERSION</span>
-                <span className="text-white">{status.version}</span>
-              </div>
-
-              <div className="flex justify-between items-center bg-background p-4 border border-border">
-                <span className="text-muted-foreground">UPTIME</span>
-                <div className="flex items-center gap-2">
-                  <Clock className="w-5 h-5 text-primary" />
-                  <span className="text-white">{formatUptime(status.uptimeSeconds)}</span>
-                </div>
-              </div>
-            </div>
-          ) : (
-            <div className="text-destructive font-pixel">FAILED TO FETCH STATUS</div>
-          )}
-        </div>
-
-        <div className="pixel-border bg-card p-8 space-y-6 flex flex-col">
-          <div className="flex items-center gap-4 border-b border-border pb-4">
-            <Activity className="w-8 h-8 text-primary" />
-            <h2 className="text-2xl font-pixel pixel-text-shadow">MOTD</h2>
-          </div>
-          
-          <div className="flex-1 bg-background border border-border p-6 font-pixel text-lg text-center flex items-center justify-center pixel-text-shadow leading-loose whitespace-pre-wrap">
-            {statusLoading ? "LOADING MOTD..." : (status?.motd || "NO MOTD SET")}
-          </div>
-
-          <Link href="/players" className="w-full block text-center pixel-border bg-secondary text-secondary-foreground font-pixel py-4 hover:bg-secondary/80 transition-colors">
-            VIEW ONLINE PLAYERS
-          </Link>
-        </div>
-      </section>
+      {/* Scroll to top button */}
+      {showTop && (
+        <button
+          onClick={() => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }}
+          style={{
+            position: "fixed",
+            bottom: "28px",
+            right: "28px",
+            background: "#3b5bdb",
+            color: "white",
+            border: "none",
+            borderRadius: "50%",
+            width: "48px",
+            height: "48px",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            cursor: "pointer",
+            fontSize: "10px",
+            fontWeight: 700,
+            gap: "2px",
+            fontFamily: "'Inter', sans-serif",
+            boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
+          }}
+        >
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M7 11V3M3 7l4-4 4 4" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+          TOP
+        </button>
+      )}
     </div>
   );
 }
