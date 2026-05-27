@@ -46,7 +46,7 @@ export default function Home() {
           <img
             src="/sls-logo.png"
             alt="Singapore Student Learning Space"
-            style={{ width: "clamp(210px, 24vw, 300px)", height: "auto", marginRight: "20px", marginTop: "-8px" }}
+            style={{ width: "clamp(210px, 24vw, 300px)", height: "auto", marginRight: "120px", marginTop: "-10px" }}
           />
 
           <button
