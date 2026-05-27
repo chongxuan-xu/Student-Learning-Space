@@ -38,14 +38,15 @@ export default function Home() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
-          padding: "0 56px",
+          alignItems: "flex-end",
+          padding: "0 64px 0 40px",
           position: "relative",
           minHeight: "100vh",
         }}>
           <img
             src="/sls-logo.png"
             alt="Singapore Student Learning Space"
-            style={{ width: "clamp(170px, 20vw, 240px)", height: "auto" }}
+            style={{ width: "clamp(240px, 28vw, 360px)", height: "auto" }}
           />
 
           <button
@@ -85,24 +86,24 @@ export default function Home() {
           {/* Login Card */}
           <div style={{
             background: "white",
-            borderRadius: "10px",
-            padding: "28px 36px 30px",
+            borderRadius: "12px",
+            padding: "36px 48px 40px",
             width: "100%",
-            maxWidth: "340px",
-            boxShadow: "0 2px 16px rgba(0,0,0,0.07)",
+            maxWidth: "420px",
+            boxShadow: "0 2px 20px rgba(0,0,0,0.08)",
           }}>
             {/* Login icon */}
-            <div style={{ display: "flex", justifyContent: "center", marginBottom: "10px" }}>
-              <img src="/login-icon.png" alt="Login" style={{ width: "74px", height: "auto" }} />
+            <div style={{ display: "flex", justifyContent: "center", marginBottom: "14px" }}>
+              <img src="/login-icon.png" alt="Login" style={{ width: "90px", height: "auto" }} />
             </div>
 
             {/* Login heading */}
             <h2 style={{
               textAlign: "center",
-              fontSize: "18px",
+              fontSize: "22px",
               fontWeight: 700,
               color: "#1a1a2e",
-              margin: "0 0 22px 0",
+              margin: "0 0 28px 0",
               fontFamily: FONT,
             }}>
               Login
@@ -116,13 +117,13 @@ export default function Home() {
                 background: SLS_BLUE,
                 color: "white",
                 border: "none",
-                borderRadius: "24px",
-                padding: "12px",
-                fontSize: "11px",
+                borderRadius: "28px",
+                padding: "14px",
+                fontSize: "13px",
                 fontWeight: 700,
-                letterSpacing: "1.6px",
+                letterSpacing: "1.8px",
                 cursor: "pointer",
-                marginBottom: "10px",
+                marginBottom: "12px",
                 fontFamily: FONT,
                 transition: "background 0.15s",
               }}
@@ -140,13 +141,13 @@ export default function Home() {
                 background: mimsHovered ? SLS_BLUE_DARK : "white",
                 color: mimsHovered ? "white" : SLS_BLUE,
                 border: `1.5px solid ${mimsHovered ? SLS_BLUE_DARK : SLS_BLUE}`,
-                borderRadius: "24px",
-                padding: "11px",
-                fontSize: "11px",
+                borderRadius: "28px",
+                padding: "13px",
+                fontSize: "13px",
                 fontWeight: 700,
-                letterSpacing: "1.6px",
+                letterSpacing: "1.8px",
                 cursor: "pointer",
-                marginBottom: "22px",
+                marginBottom: "28px",
                 fontFamily: FONT,
                 transition: "background 0.15s, color 0.15s, border-color 0.15s",
               }}
@@ -157,20 +158,20 @@ export default function Home() {
             {/* Info box */}
             <div style={{
               display: "flex",
-              gap: "9px",
+              gap: "10px",
               alignItems: "flex-start",
               background: "#f4f6fb",
-              borderRadius: "7px",
-              padding: "12px 14px",
+              borderRadius: "8px",
+              padding: "14px 16px",
             }}>
-              <div style={{ flexShrink: 0, marginTop: "1px" }}>
-                <svg width="16" height="16" viewBox="0 0 17 17" fill="none">
+              <div style={{ flexShrink: 0, marginTop: "2px" }}>
+                <svg width="17" height="17" viewBox="0 0 17 17" fill="none">
                   <circle cx="8.5" cy="8.5" r="8" stroke={SLS_BLUE} strokeWidth="1.4"/>
                   <rect x="7.9" y="7" width="1.4" height="5.5" rx="0.7" fill={SLS_BLUE}/>
                   <circle cx="8.5" cy="5.2" r="0.85" fill={SLS_BLUE}/>
                 </svg>
               </div>
-              <p style={{ fontSize: "12px", color: "#4b5563", lineHeight: 1.6, margin: 0, fontFamily: FONT }}>
+              <p style={{ fontSize: "13px", color: "#4b5563", lineHeight: 1.65, margin: 0, fontFamily: FONT }}>
                 If you have difficulties logging in or would like to apply for a new MIMS account, please refer to{" "}
                 <a
                   href="#"
