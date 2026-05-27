@@ -39,14 +39,14 @@ export default function Home() {
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "flex-end",
-          padding: "0 64px 0 40px",
+          padding: "0 40px 0 56px",
           position: "relative",
           minHeight: "100vh",
         }}>
           <img
             src="/sls-logo.png"
             alt="Singapore Student Learning Space"
-            style={{ width: "clamp(240px, 28vw, 360px)", height: "auto" }}
+            style={{ width: "clamp(210px, 24vw, 300px)", height: "auto" }}
           />
 
           <button
