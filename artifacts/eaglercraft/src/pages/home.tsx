@@ -11,31 +11,8 @@ function SmileIcon() {
   );
 }
 
-function LoginIcon() {
-  return (
-    <svg width="90" height="68" viewBox="0 0 90 68" fill="none" xmlns="http://www.w3.org/2000/svg">
-      {/* Card body */}
-      <rect x="0" y="4" width="62" height="52" rx="6" fill="#d8e4f2" stroke="#b8ccec" strokeWidth="1.5"/>
-      {/* Screen/inner area */}
-      <rect x="5" y="9" width="52" height="42" rx="4" fill="#eaf0fa"/>
-      {/* Person head */}
-      <circle cx="22" cy="22" r="8" fill="#a0b8d8"/>
-      {/* Person body */}
-      <path d="M10 40 Q10 32 22 32 Q34 32 34 40" fill="#a0b8d8"/>
-      {/* Password dots row */}
-      <circle cx="42" cy="22" r="2.5" fill="#7090b8"/>
-      <circle cx="49" cy="22" r="2.5" fill="#7090b8"/>
-      <circle cx="56" cy="22" r="2.5" fill="#7090b8"/>
-      {/* Horizontal line */}
-      <rect x="38" y="30" width="20" height="2" rx="1" fill="#b8ccec"/>
-      {/* Blue login circle */}
-      <circle cx="72" cy="50" r="18" fill="#3b5bdb"/>
-      {/* Arrow right */}
-      <path d="M64 50h14" stroke="white" strokeWidth="2.5" strokeLinecap="round"/>
-      <path d="M73 44l6 6-6 6" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-    </svg>
-  );
-}
+const TITLE_FONT = "'Nunito', 'Arial Rounded MT Bold', sans-serif";
+const BODY_FONT = "'Inter', sans-serif";
 
 export default function Home() {
   const [showTop, setShowTop] = useState(false);
@@ -47,7 +24,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div style={{ fontFamily: "'Inter', sans-serif", minHeight: "100vh", display: "flex", flexDirection: "column" }}>
+    <div style={{ fontFamily: BODY_FONT, minHeight: "100vh", display: "flex", flexDirection: "column" }}>
 
       {/* Main split panel */}
       <div id="top" style={{ display: "flex", minHeight: "100vh" }}>
@@ -69,46 +46,44 @@ export default function Home() {
             alignItems: "center",
             background: "#d9534f",
             color: "white",
-            fontSize: "11px",
-            fontWeight: 700,
-            letterSpacing: "3.5px",
-            padding: "5px 12px",
-            borderRadius: "3px",
-            marginBottom: "14px",
+            fontSize: "12px",
+            fontWeight: 800,
+            letterSpacing: "3px",
+            padding: "6px 14px",
+            borderRadius: "6px",
+            marginBottom: "12px",
             width: "fit-content",
+            fontFamily: TITLE_FONT,
           }}>
             SINGAPORE
           </div>
 
           {/* Title */}
-          <div style={{ lineHeight: 1.08 }}>
+          <div style={{ lineHeight: 1.05, fontFamily: TITLE_FONT }}>
             <div style={{
-              fontSize: "clamp(38px, 4.5vw, 62px)",
+              fontSize: "clamp(44px, 5.2vw, 70px)",
               fontWeight: 900,
               color: "white",
-              fontFamily: "'Inter', sans-serif",
             }}>
               Student
             </div>
             <div style={{
-              fontSize: "clamp(38px, 4.5vw, 62px)",
+              fontSize: "clamp(44px, 5.2vw, 70px)",
               fontWeight: 900,
               color: "#5b8fd4",
-              fontFamily: "'Inter', sans-serif",
             }}>
               Learning
             </div>
             <div style={{
-              fontSize: "clamp(38px, 4.5vw, 62px)",
+              fontSize: "clamp(44px, 5.2vw, 70px)",
               fontWeight: 900,
               color: "white",
-              fontFamily: "'Inter', sans-serif",
             }}>
               Space
             </div>
           </div>
 
-          {/* Help us improve button - bottom left */}
+          {/* Help us improve button */}
           <button
             onClick={() => {}}
             style={{
@@ -122,12 +97,11 @@ export default function Home() {
               color: "white",
               border: "none",
               borderRadius: "20px",
-              padding: "9px 16px 9px 16px",
+              padding: "9px 14px 9px 16px",
               fontSize: "13px",
-              fontWeight: 500,
+              fontWeight: 600,
               cursor: "pointer",
-              fontFamily: "'Inter', sans-serif",
-              letterSpacing: "0.1px",
+              fontFamily: BODY_FONT,
             }}
           >
             Help us improve
@@ -153,9 +127,13 @@ export default function Home() {
             maxWidth: "390px",
             boxShadow: "0 2px 20px rgba(0,0,0,0.07)",
           }}>
-            {/* Icon */}
+            {/* Icon - using actual reference image */}
             <div style={{ display: "flex", justifyContent: "center", marginBottom: "14px" }}>
-              <LoginIcon />
+              <img
+                src="/login-icon.png"
+                alt="Login"
+                style={{ width: "90px", height: "auto" }}
+              />
             </div>
 
             {/* Login heading */}
@@ -166,7 +144,7 @@ export default function Home() {
               color: "#1a1a2e",
               marginBottom: "26px",
               marginTop: 0,
-              fontFamily: "'Inter', sans-serif",
+              fontFamily: BODY_FONT,
             }}>
               Login
             </h2>
@@ -186,7 +164,7 @@ export default function Home() {
                 letterSpacing: "1.8px",
                 cursor: "pointer",
                 marginBottom: "11px",
-                fontFamily: "'Inter', sans-serif",
+                fontFamily: BODY_FONT,
               }}
             >
               LOGIN WITH SLS
@@ -207,7 +185,7 @@ export default function Home() {
                 letterSpacing: "1.8px",
                 cursor: "pointer",
                 marginBottom: "26px",
-                fontFamily: "'Inter', sans-serif",
+                fontFamily: BODY_FONT,
               }}
             >
               LOGIN WITH MIMS
@@ -223,13 +201,13 @@ export default function Home() {
               padding: "14px 16px",
             }}>
               <div style={{ flexShrink: 0, marginTop: "1px" }}>
-                <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg width="17" height="17" viewBox="0 0 17 17" fill="none">
                   <circle cx="8.5" cy="8.5" r="8" stroke="#4a7fd4" strokeWidth="1.4"/>
                   <rect x="7.9" y="7" width="1.4" height="5.5" rx="0.7" fill="#4a7fd4"/>
                   <circle cx="8.5" cy="5.2" r="0.85" fill="#4a7fd4"/>
                 </svg>
               </div>
-              <p style={{ fontSize: "12.5px", color: "#4b5563", lineHeight: 1.65, margin: 0 }}>
+              <p style={{ fontSize: "12.5px", color: "#4b5563", lineHeight: 1.65, margin: 0, fontFamily: BODY_FONT }}>
                 If you have difficulties logging in or would like to apply for a new MIMS account, please refer to{" "}
                 <a
                   href="#"
@@ -256,19 +234,14 @@ export default function Home() {
             fontSize: "18px",
             fontWeight: 700,
             marginBottom: "18px",
-            fontFamily: "'Inter', sans-serif",
+            fontFamily: BODY_FONT,
           }}>
             Student Learning Space
           </div>
 
-          <hr style={{ borderColor: "rgba(255,255,255,0.12)", borderTop: "1px solid rgba(255,255,255,0.12)", marginBottom: "18px" }} />
+          <hr style={{ border: "none", borderTop: "1px solid rgba(255,255,255,0.12)", marginBottom: "18px" }} />
 
-          <div style={{
-            display: "flex",
-            flexWrap: "wrap",
-            gap: "0",
-            marginBottom: "10px",
-          }}>
+          <div style={{ display: "flex", flexWrap: "wrap", marginBottom: "10px" }}>
             {[
               "Login Troubleshooting",
               "Terms of Use",
@@ -284,7 +257,7 @@ export default function Home() {
                     color: "rgba(255,255,255,0.8)",
                     textDecoration: "none",
                     fontSize: "13px",
-                    fontFamily: "'Inter', sans-serif",
+                    fontFamily: BODY_FONT,
                   }}
                 >
                   {label}
@@ -296,7 +269,7 @@ export default function Home() {
             ))}
           </div>
 
-          <p style={{ fontSize: "12.5px", color: "rgba(255,255,255,0.55)", lineHeight: 1.6, margin: 0, fontFamily: "'Inter', sans-serif" }}>
+          <p style={{ fontSize: "12.5px", color: "rgba(255,255,255,0.55)", lineHeight: 1.6, margin: 0, fontFamily: BODY_FONT }}>
             <a href="/play?version=1.5.2" style={{ color: "rgba(255,255,255,0.55)", textDecoration: "none" }}>Copyright</a>
             {" © 2026 "}
             <a href="/play?version=1.8.8" style={{ color: "rgba(255,255,255,0.55)", textDecoration: "none" }}>Ministry of Education</a>
@@ -329,7 +302,7 @@ export default function Home() {
             fontSize: "9px",
             fontWeight: 700,
             gap: "1px",
-            fontFamily: "'Inter', sans-serif",
+            fontFamily: BODY_FONT,
             boxShadow: "0 4px 14px rgba(0,0,0,0.35)",
             letterSpacing: "0.5px",
           }}
