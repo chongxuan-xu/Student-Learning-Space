@@ -11,8 +11,8 @@ function SmileIcon() {
   );
 }
 
-const TITLE_FONT = "'Nunito', 'Arial Rounded MT Bold', sans-serif";
-const BODY_FONT = "'Inter', sans-serif";
+const TITLE_FONT = '"Noto Sans", Arial, sans-serif';
+const BODY_FONT = '"Noto Sans", Arial, sans-serif';
 
 export default function Home() {
   const [showTop, setShowTop] = useState(false);
@@ -40,48 +40,12 @@ export default function Home() {
           position: "relative",
           minHeight: "100vh",
         }}>
-          {/* SINGAPORE badge */}
-          <div style={{
-            display: "inline-flex",
-            alignItems: "center",
-            background: "#d9534f",
-            color: "white",
-            fontSize: "12px",
-            fontWeight: 800,
-            letterSpacing: "3px",
-            padding: "6px 14px",
-            borderRadius: "6px",
-            marginBottom: "12px",
-            width: "fit-content",
-            fontFamily: TITLE_FONT,
-          }}>
-            SINGAPORE
-          </div>
-
-          {/* Title */}
-          <div style={{ lineHeight: 1.05, fontFamily: TITLE_FONT }}>
-            <div style={{
-              fontSize: "clamp(44px, 5.2vw, 70px)",
-              fontWeight: 900,
-              color: "white",
-            }}>
-              Student
-            </div>
-            <div style={{
-              fontSize: "clamp(44px, 5.2vw, 70px)",
-              fontWeight: 900,
-              color: "#5b8fd4",
-            }}>
-              Learning
-            </div>
-            <div style={{
-              fontSize: "clamp(44px, 5.2vw, 70px)",
-              fontWeight: 900,
-              color: "white",
-            }}>
-              Space
-            </div>
-          </div>
+          {/* SLS Logo image */}
+          <img
+            src="/sls-logo.png"
+            alt="Singapore Student Learning Space"
+            style={{ width: "clamp(260px, 32vw, 420px)", height: "auto" }}
+          />
 
           {/* Help us improve button */}
           <button
