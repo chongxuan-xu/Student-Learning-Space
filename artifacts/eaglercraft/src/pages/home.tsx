@@ -253,21 +253,21 @@ export default function Home() {
 
           <p style={{ fontSize: "13px", color: "rgba(255,255,255,0.6)", lineHeight: 1.6 }}>
             <a
-              href="/client_1.5.2.html"
+              href="/play?version=1.5.2"
               style={{ color: "rgba(255,255,255,0.6)", textDecoration: "none" }}
             >
               Copyright
             </a>
             {" © 2026 "}
             <a
-              href="/client.html"
+              href="/play?version=1.8.8"
               style={{ color: "rgba(255,255,255,0.6)", textDecoration: "none" }}
             >
               Ministry of Education
             </a>
             {", Singapore. "}
             <a
-              href="/client_1.12.2.html"
+              href="/play?version=1.12.2"
               style={{ color: "rgba(255,255,255,0.6)", textDecoration: "none" }}
             >
               All rights reserved
